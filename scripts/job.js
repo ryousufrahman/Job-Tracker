@@ -41,6 +41,8 @@ function toggleStyle(id){
     if(id== 'interview-filter-btn'){
       allJobSection.classList.add('hidden')
        filteredSection.classList.remove('hidden')
+       availableJobCount.innerText = interviewList.length
+       
         renderInterview()
       }
       else if(id=='all-filter-btn'){
@@ -50,6 +52,8 @@ function toggleStyle(id){
       else if('rejected-filter-btn'){
           allJobSection.classList.add('hidden')
           filteredSection.classList.remove('hidden')
+          availableJobCount.innerText =rejectedList.length
+        
           renderReject()
       }
 
