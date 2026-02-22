@@ -48,6 +48,7 @@ function toggleStyle(id){
       else if(id=='all-filter-btn'){
         allJobSection.classList.remove('hidden')
         filteredSection.classList.add('hidden')
+        availableJobCount.innerText = allJobSection.children.length;
       }
       else if('rejected-filter-btn'){
           allJobSection.classList.add('hidden')
