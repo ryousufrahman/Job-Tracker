@@ -1,6 +1,8 @@
 // .............all jobs count show!!!!!!!!!
 let interviewList =[];
 let rejectedList =[];
+let statusBtn = 'all'
+let currentStatus = 'all-filter-btn';
 let totalCount =document.getElementById('total-count');
 let interviewCount =document.getElementById('interview-count');
 let rejectedCount = document.getElementById('rejected-count');
@@ -23,6 +25,8 @@ const interviewFilterBtn =document.getElementById('interview-filter-btn');
 const rejectedFilterBtn = document.getElementById('rejected-filter-btn');
 
 function toggleStyle(id){
+
+   statusBtn = id ;
     allFilterBtn.classList.remove('bg-sky-500' , 'text-white');
     interviewFilterBtn.classList.remove('bg-sky-500' , 'text-white');
     rejectedFilterBtn.classList.remove('bg-sky-500' , 'text-white');
@@ -37,10 +41,16 @@ function toggleStyle(id){
     if(id== 'interview-filter-btn'){
       allJobSection.classList.add('hidden')
        filteredSection.classList.remove('hidden')
+        renderInterview()
       }
       else if(id=='all-filter-btn'){
         allJobSection.classList.remove('hidden')
         filteredSection.classList.add('hidden')
+      }
+      else if('rejected-filter-btn'){
+          allJobSection.classList.add('hidden')
+          filteredSection.classList.remove('hidden')
+          renderReject()
       }
 
     
@@ -55,8 +65,9 @@ mainContainer.addEventListener('click', function(event){
   const jobName =parenetInfoNode.querySelector('.Company-name').innerText;
   const roleName =parenetInfoNode.querySelector('.role-name').innerText;
   const salaryType = parenetInfoNode.querySelector('.salary-job-type').innerText;
-  const statusBar =parenetInfoNode.querySelector('.status-bar').innerText = 'interviewed';
+  const statusBar =parenetInfoNode.querySelector('.status-bar').innerText = 'interviwed' ;
   const jobDescription = parenetInfoNode.querySelector('.descriptin').innerText;
+  
   
   
   
@@ -77,10 +88,67 @@ mainContainer.addEventListener('click', function(event){
     interviewList.push(jobInformationObject)
   }
 
-  renderInterview()
+  rejectedList = rejectedList.filter(item=> item.jobName !=jobInformationObject.jobName)
+
+
+    if(statusBtn== 'rejected-filter-btn'){
+    renderReject()
+  }
+    calculateCount();
+
+  
+     
+      
+      
 
    }
-   console.log(jobInformationObject);
+
+    else if(event.target.classList.contains('rejected-btn')){
+      const parenetInfoNode = event.target.parentNode.parentNode;
+  const jobName =parenetInfoNode.querySelector('.Company-name').innerText;
+  const roleName =parenetInfoNode.querySelector('.role-name').innerText;
+  const salaryType = parenetInfoNode.querySelector('.salary-job-type').innerText;
+  const statusBar =parenetInfoNode.querySelector('.status-bar').innerText = 'Rejected' ;
+  const jobDescription = parenetInfoNode.querySelector('.descriptin').innerText;
+  
+  
+  
+  
+  const jobInformationObject={
+    jobName,
+    roleName,
+    salaryType,
+    statusBar,
+    jobDescription
+
+  }
+  
+  const jobExist = rejectedList.find(item=> item.jobName== jobInformationObject.jobName);
+ 
+  
+
+  if(!jobExist){
+    rejectedList.push(jobInformationObject)
+  }
+  interviewList= interviewList.filter(item=> item.jobName !=jobInformationObject.jobName)
+
+  if(statusBtn== 'interview-filter-btn'){
+    renderInterview()
+  }
+
+
+    calculateCount();
+
+  
+      
+      
+      
+
+   }
+
+
+   
+   
    
   
 })
@@ -120,12 +188,47 @@ const filteredSection =document.getElementById('filterd-section');
         
         `
         filteredSection.appendChild(div);
-        calculateCount();
+       
 
     }
      
  }
 
+  function renderReject (){
+    filteredSection.innerHTML =''
+    for(let reject of rejectedList ){
+    
+        
+        let div =document.createElement('div')
+        div.className = 'flex justify-between shadow p-[24px] rounded'
+        div.innerHTML = ` 
+           <div class="left-part space-y-3">
+                      <div class="job-head space-y-3">
+                        <h2 class="Company-name font-bold text-2xl">${reject.jobName}</h2>
+                        <p class="text-gray-500 role-name">${reject.roleName}</p>
+                        <p class="text-gray-500 salary-job-type">${reject.salaryType}</p>
 
-  
+                      </div>
+                       <div class="job-extra-info space-y-2 ">
+                        <span class="status-bar bg-gray-300 p-2 rounded ">${reject.statusBar}</span>
+                        <p class="descriptin mt-3">${reject.jobDescription}</p>
 
+                       </div>
+                       <div class="buttons-inside-job">
+                        <button class="btn border border-green-500 text-green-500 mr-2">interview</button>
+                        <button class="btn border border-red-500 text-red-500">Rejected</button>
+
+                       </div>
+
+                 </div>
+        
+        
+        `
+        filteredSection.appendChild(div);
+       
+
+    }
+     
+ }
+
+ 
