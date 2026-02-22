@@ -34,6 +34,15 @@ function toggleStyle(id){
     const selectedBtn =document.getElementById(id);
     selectedBtn.classList.add('bg-sky-500' , 'text-white')
 
+    if(id== 'interview-filter-btn'){
+      allJobSection.classList.add('hidden')
+       filteredSection.classList.remove('hidden')
+      }
+      else if(id=='all-filter-btn'){
+        allJobSection.classList.remove('hidden')
+        filteredSection.classList.add('hidden')
+      }
+
     
 }
 
@@ -46,8 +55,10 @@ mainContainer.addEventListener('click', function(event){
   const jobName =parenetInfoNode.querySelector('.Company-name').innerText;
   const roleName =parenetInfoNode.querySelector('.role-name').innerText;
   const salaryType = parenetInfoNode.querySelector('.salary-job-type').innerText;
-  const statusBar =parenetInfoNode.querySelector('.status-bar').innerText;
+  const statusBar =parenetInfoNode.querySelector('.status-bar').innerText = 'interviewed';
   const jobDescription = parenetInfoNode.querySelector('.descriptin').innerText;
+  
+  
   
   const jobInformationObject={
     jobName,
@@ -59,7 +70,7 @@ mainContainer.addEventListener('click', function(event){
   }
   
   const jobExist = interviewList.find(item=> item.jobName== jobInformationObject.jobName);
-  parenetInfoNode.querySelector('.status-bar').innerText = 'Interview'
+ 
   
 
   if(!jobExist){
@@ -70,6 +81,7 @@ mainContainer.addEventListener('click', function(event){
 
    }
    console.log(jobInformationObject);
+   
   
 })
 
@@ -87,14 +99,14 @@ const filteredSection =document.getElementById('filterd-section');
         div.innerHTML = ` 
            <div class="left-part space-y-3">
                       <div class="job-head space-y-3">
-                        <h2 class="Company-name font-bold text-2xl">Mobile First Corp</h2>
-                        <p class="text-gray-500 role-name">React Native Developer</p>
-                        <p class="text-gray-500 salary-job-type">Remote : Full-time : $130000 - $175000</p>
+                        <h2 class="Company-name font-bold text-2xl">${interview.jobName}</h2>
+                        <p class="text-gray-500 role-name">${interview.roleName}</p>
+                        <p class="text-gray-500 salary-job-type">${interview.salaryType}</p>
 
                       </div>
                        <div class="job-extra-info space-y-2 ">
-                        <span class="status-bar bg-gray-300 p-2 rounded ">Not Applied</span>
-                        <p class="descriptin mt-3">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
+                        <span class="status-bar bg-gray-300 p-2 rounded ">${interview.statusBar}</span>
+                        <p class="descriptin mt-3">${interview.jobDescription}</p>
 
                        </div>
                        <div class="buttons-inside-job">
@@ -108,6 +120,7 @@ const filteredSection =document.getElementById('filterd-section');
         
         `
         filteredSection.appendChild(div);
+        calculateCount();
 
     }
      
