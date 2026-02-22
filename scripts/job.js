@@ -9,9 +9,21 @@ let rejectedCount = document.getElementById('rejected-count');
 const allJobSection =document.getElementById('all-jobs-section');
 let availableJobCount =document.getElementById('available-jobs-count');
 
+ const deleteButtons = document.querySelectorAll('.delete-btn');
+
+
+deleteButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      
+        this.parentNode.parentNode.remove();
+         totalCount.innerText = allJobSection.children.length;
+         availableJobCount.innerText = allJobSection.children.length;
+    });
+ });
+
 function calculateCount() {
     totalCount.innerText = allJobSection.children.length;
-    availableJobCount.innerText = allJobSection.children.length;
+    
     interviewCount.innerText = interviewList.length;
     rejectedCount.innerText = rejectedList.length
     
@@ -72,6 +84,10 @@ mainContainer.addEventListener('click', function(event){
   const salaryType = parenetInfoNode.querySelector('.salary-job-type').innerText;
   const statusBar =parenetInfoNode.querySelector('.status-bar').innerText = 'interviwed' ;
   const jobDescription = parenetInfoNode.querySelector('.descriptin').innerText;
+  const statusBarElement = document.querySelector('.status-bar');
+  statusBarElement.classList.add('bg-green-500', 'text-white');
+  statusBarElement.classList.remove('bg-red-500');
+
   
   
   
@@ -115,6 +131,9 @@ mainContainer.addEventListener('click', function(event){
   const salaryType = parenetInfoNode.querySelector('.salary-job-type').innerText;
   const statusBar =parenetInfoNode.querySelector('.status-bar').innerText = 'Rejected' ;
   const jobDescription = parenetInfoNode.querySelector('.descriptin').innerText;
+  const statusBarElement = document.querySelectorAll('.status-bar');
+  statusBarElement.classList.add('bg-red-500', 'text-white');
+  statusBarElement.classList.remove('bg-green-500');
   
   
   
@@ -178,7 +197,7 @@ const filteredSection =document.getElementById('filterd-section');
 
                       </div>
                        <div class="job-extra-info space-y-2 ">
-                        <span class="status-bar bg-gray-300 p-2 rounded ">${interview.statusBar}</span>
+                        <span class="status-bar bg-gray-300 p-2 rounded  bg-green-500 text-white">${interview.statusBar}</span>
                         <p class="descriptin mt-3">${interview.jobDescription}</p>
 
                        </div>
@@ -215,7 +234,7 @@ const filteredSection =document.getElementById('filterd-section');
 
                       </div>
                        <div class="job-extra-info space-y-2 ">
-                        <span class="status-bar bg-gray-300 p-2 rounded ">${reject.statusBar}</span>
+                        <span class="status-bar bg-gray-300 p-2 rounded  bg-red-500 text-white">${reject.statusBar}</span>
                         <p class="descriptin mt-3">${reject.jobDescription}</p>
 
                        </div>
@@ -236,4 +255,5 @@ const filteredSection =document.getElementById('filterd-section');
      
  }
 
+ 
  
