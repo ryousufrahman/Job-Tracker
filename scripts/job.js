@@ -54,9 +54,11 @@ function toggleStyle(id){
     if(id== 'interview-filter-btn'){
       allJobSection.classList.add('hidden')
        filteredSection.classList.remove('hidden')
-       availableJobCount.innerText = interviewList.length
+       
        
         renderInterview()
+         availableJobCount.innerText = interviewList.length
+        
       }
       else if(id=='all-filter-btn'){
         allJobSection.classList.remove('hidden')
@@ -66,14 +68,18 @@ function toggleStyle(id){
       else if('rejected-filter-btn'){
           allJobSection.classList.add('hidden')
           filteredSection.classList.remove('hidden')
-          availableJobCount.innerText =rejectedList.length
-         
-        
-          renderReject()
-      }
+          
+         renderReject()
+        availableJobCount.innerText = rejectedList.length
+      }  
+
+     
+ 
+
+    }
 
     
-}
+      
  availableJobCount.innerText = allJobSection.children.length;
 
 //   now through main container i will select the interview and rejected button 
@@ -87,6 +93,7 @@ mainContainer.addEventListener('click', function(event){
   const salaryType = parenetInfoNode.querySelector('.salary-job-type').innerText;
   const statusBar =parenetInfoNode.querySelector('.status-bar').innerText = 'interviewed';
   const jobDescription = parenetInfoNode.querySelector('.descriptin').innerText;
+   
   
 
   
@@ -116,7 +123,7 @@ mainContainer.addEventListener('click', function(event){
     if(statusBtn== 'rejected-filter-btn'){
     renderReject()
   }
-    calculateCount();
+    calculateCount()
 
   
      
@@ -158,7 +165,7 @@ mainContainer.addEventListener('click', function(event){
   }
 
 
-    calculateCount();
+    calculateCount()
 
   
       
@@ -251,6 +258,7 @@ const filteredSection =document.getElementById('filterd-section');
     }
      
  }
+
 
  
 
