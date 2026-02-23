@@ -49,6 +49,7 @@ function toggleStyle(id){
 
     const selectedBtn =document.getElementById(id);
     selectedBtn.classList.add('bg-sky-500' , 'text-white')
+  
 
     if(id== 'interview-filter-btn'){
       allJobSection.classList.add('hidden')
@@ -66,12 +67,18 @@ function toggleStyle(id){
           allJobSection.classList.add('hidden')
           filteredSection.classList.remove('hidden')
           availableJobCount.innerText =rejectedList.length
+          if(interviewList.length ==0){
+              const hiddenText = document.getElementById('hiddenText');
+             hiddenText.classList.remove('hidden')
+              }
+
         
           renderReject()
       }
 
     
 }
+ availableJobCount.innerText = allJobSection.children.length;
 
 //   now through main container i will select the interview and rejected button 
 
@@ -82,11 +89,9 @@ mainContainer.addEventListener('click', function(event){
   const jobName =parenetInfoNode.querySelector('.Company-name').innerText;
   const roleName =parenetInfoNode.querySelector('.role-name').innerText;
   const salaryType = parenetInfoNode.querySelector('.salary-job-type').innerText;
-  const statusBar =parenetInfoNode.querySelector('.status-bar').innerText = 'interviwed' ;
+  const statusBar =parenetInfoNode.querySelector('.status-bar').innerText = 'interviewed';
   const jobDescription = parenetInfoNode.querySelector('.descriptin').innerText;
-  const statusBarElement = document.querySelector('.status-bar');
-  statusBarElement.classList.add('bg-green-500', 'text-white');
-  statusBarElement.classList.remove('bg-red-500');
+  
 
   
   
@@ -131,10 +136,6 @@ mainContainer.addEventListener('click', function(event){
   const salaryType = parenetInfoNode.querySelector('.salary-job-type').innerText;
   const statusBar =parenetInfoNode.querySelector('.status-bar').innerText = 'Rejected' ;
   const jobDescription = parenetInfoNode.querySelector('.descriptin').innerText;
-  const statusBarElement = document.querySelectorAll('.status-bar');
-  statusBarElement.classList.add('bg-red-500', 'text-white');
-  statusBarElement.classList.remove('bg-green-500');
-  
   
   
   
@@ -202,8 +203,8 @@ const filteredSection =document.getElementById('filterd-section');
 
                        </div>
                        <div class="buttons-inside-job">
-                        <button class="btn border border-green-500 text-green-500 mr-2">interview</button>
-                        <button class="btn border border-red-500 text-red-500">Rejected</button>
+                        <button class="btn border border-green-500 text-green-500 mr-2 interview-btn ">interview</button>
+                        <button class="btn border border-red-500 text-red-500 rejected-btn">Rejected</button>
 
                        </div>
 
@@ -239,8 +240,8 @@ const filteredSection =document.getElementById('filterd-section');
 
                        </div>
                        <div class="buttons-inside-job">
-                        <button class="btn border border-green-500 text-green-500 mr-2">interview</button>
-                        <button class="btn border border-red-500 text-red-500">Rejected</button>
+                        <button class="btn border border-green-500 text-green-500 mr-2  interview-btn">interview</button>
+                        <button class="btn border border-red-500 text-red-500 rejected-btn ">Rejected</button>
 
                        </div>
 
@@ -254,6 +255,9 @@ const filteredSection =document.getElementById('filterd-section');
     }
      
  }
+
+ 
+
 
  
  
