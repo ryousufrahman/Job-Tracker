@@ -55,23 +55,50 @@ function toggleStyle(id){
     if(id== 'interview-filter-btn'){
       allJobSection.classList.add('hidden')
        filteredSection.classList.remove('hidden')
-       
-       
+       const noJob =document.getElementById('no-job-section');
+       availableJobCount.innerText = interviewList.length
         renderInterview()
-         availableJobCount.innerText = interviewList.length
+        
+         
+          noJob.classList.add('hidden')
+
+       if(interviewList.length<1){
+            
+           noJob.classList.remove('hidden')
+          }
+       
+
+         
+       
+         
+        
         
       }
       else if(id=='all-filter-btn'){
         allJobSection.classList.remove('hidden')
         filteredSection.classList.add('hidden')
         availableJobCount.innerText = allJobSection.children.length;
+        
+            const noJob =document.getElementById('no-job-section');
+            noJob.classList.add('hidden')
+        
       }
       else if('rejected-filter-btn'){
           allJobSection.classList.add('hidden')
           filteredSection.classList.remove('hidden')
+          const noJob =document.getElementById('no-job-section');
+          availableJobCount.innerText = rejectedList.length
+           renderReject()
+        
+          noJob.classList.add('hidden')
           
-         renderReject()
-        availableJobCount.innerText = rejectedList.length
+          if(rejectedList.length<1){
+           
+            noJob.classList.remove('hidden')
+          }
+          
+          
+        
       }  
 
      
