@@ -67,11 +67,7 @@ function toggleStyle(id){
           allJobSection.classList.add('hidden')
           filteredSection.classList.remove('hidden')
           availableJobCount.innerText =rejectedList.length
-          if(interviewList.length ==0){
-              const hiddenText = document.getElementById('hiddenText');
-             hiddenText.classList.remove('hidden')
-              }
-
+         
         
           renderReject()
       }
