@@ -1,6 +1,7 @@
 // .............all jobs count show!!!!!!!!!
 let interviewList =[];
 let rejectedList =[];
+
 let statusBtn = 'all'
 let currentStatus = 'all-filter-btn';
 let totalCount =document.getElementById('total-count');
@@ -93,6 +94,12 @@ mainContainer.addEventListener('click', function(event){
   const salaryType = parenetInfoNode.querySelector('.salary-job-type').innerText;
   const statusBar =parenetInfoNode.querySelector('.status-bar').innerText = 'interviewed';
   const jobDescription = parenetInfoNode.querySelector('.descriptin').innerText;
+  const rejectedColor =parenetInfoNode.querySelectorAll('.status-bar')
+    for(let color of rejectedColor){
+       color.classList.remove('bg-red-500' )
+      color.classList.add('bg-green-500' , 'text-white')
+     
+    }
    
   
 
@@ -139,7 +146,12 @@ mainContainer.addEventListener('click', function(event){
   const salaryType = parenetInfoNode.querySelector('.salary-job-type').innerText;
   const statusBar =parenetInfoNode.querySelector('.status-bar').innerText = 'Rejected' ;
   const jobDescription = parenetInfoNode.querySelector('.descriptin').innerText;
-  
+   const rejectedColor =parenetInfoNode.querySelectorAll('.status-bar')
+    for(let color of rejectedColor){
+      color.classList.remove('bg-green-500' )
+      color.classList.add('bg-red-500', 'text-white')
+      
+    }
   
   
   const jobInformationObject={
@@ -153,8 +165,7 @@ mainContainer.addEventListener('click', function(event){
   
   const jobExist = rejectedList.find(item=> item.jobName== jobInformationObject.jobName);
  
-  
-
+   
   if(!jobExist){
     rejectedList.push(jobInformationObject)
   }
@@ -186,13 +197,17 @@ mainContainer.addEventListener('click', function(event){
 const filteredSection =document.getElementById('filterd-section');
 
  function renderInterview (){
+
+
     filteredSection.innerHTML =''
     for(let interview of interviewList ){
     
         
         let div =document.createElement('div')
         div.className = 'flex justify-between shadow p-[24px] rounded'
-        div.innerHTML = ` 
+
+         
+         div.innerHTML = ` 
            <div class="left-part space-y-3">
                       <div class="job-head space-y-3">
                         <h2 class="Company-name font-bold text-2xl">${interview.jobName}</h2>
@@ -201,7 +216,7 @@ const filteredSection =document.getElementById('filterd-section');
 
                       </div>
                        <div class="job-extra-info space-y-2 ">
-                        <span class="status-bar bg-gray-300 p-2 rounded  bg-green-500 text-white">${interview.statusBar}</span>
+                        <span class="status-bar bg-gray-300 p-2 rounded bg-green-500 text-white ">${interview.statusBar}</span>
                         <p class="descriptin mt-3">${interview.jobDescription}</p>
 
                        </div>
@@ -258,6 +273,10 @@ const filteredSection =document.getElementById('filterd-section');
     }
      
  }
+
+ renderInterview ()
+
+ 
 
 
  
