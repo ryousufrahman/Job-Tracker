@@ -148,7 +148,7 @@ mainContainer.addEventListener('click', function(event){
   const jobDescription = parenetInfoNode.querySelector('.descriptin').innerText;
    const rejectedColor =parenetInfoNode.querySelectorAll('.status-bar')
     for(let color of rejectedColor){
-      color.classList.remove('bg-green-500' )
+      color.classList.remove('bg-green-500' ) 
       color.classList.add('bg-red-500', 'text-white')
       
     }
