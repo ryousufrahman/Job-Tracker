@@ -243,7 +243,7 @@ const filteredSection =document.getElementById('filterd-section');
 
                       </div>
                        <div class="job-extra-info space-y-2 ">
-                        <span class="status-bar bg-gray-300 p-2 rounded bg-green-500 text-white ">${interview.statusBar}</span>
+                        <span class="status-bar  p-2 rounded bg-green-500 text-white ">${interview.statusBar}</span>
                         <p class="descriptin mt-3">${interview.jobDescription}</p>
 
                        </div>
@@ -280,7 +280,7 @@ const filteredSection =document.getElementById('filterd-section');
 
                       </div>
                        <div class="job-extra-info space-y-2 ">
-                        <span class="status-bar bg-gray-300 p-2 rounded  bg-red-500 text-white">${reject.statusBar}</span>
+                        <span class="status-bar  p-2 rounded  bg-red-500 text-white">${reject.statusBar}</span>
                         <p class="descriptin mt-3">${reject.jobDescription}</p>
 
                        </div>
